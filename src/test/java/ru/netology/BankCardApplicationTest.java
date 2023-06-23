@@ -21,4 +21,16 @@ class BankCardApplicationTest {
         $("[data-test-id=order-success]").shouldHave(exactText("  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
 
     }
+
+   @Test
+    void ShouldFillTheFormWithError() {
+        open("http://localhost:9999/");
+        SelenideElement form = $(".form");
+        form.$("[data-test-id=name] input").setValue("Romashka Polevaya");
+        form.$("[data-test-id=phone] input").setValue("+79123456789");
+        form.$("[data-test-id=agreement]").click();
+        form.$(".button").click();
+        $(".input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+
+    }
 }
