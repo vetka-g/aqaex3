@@ -76,10 +76,9 @@ class BankCardApplicationTest {
     void shouldCheckTheBox() {
         SelenideElement form = $(".form");
         form.$("[data-test-id=name] input").setValue("Ромашка Полевая");
-        form.$("[data-test-id=phone] input").setValue("+7912345678");
-        form.$("[data-test-id=agreement]").click();
+        form.$("[data-test-id=phone] input").setValue("+79123456789");
         form.$(".button").click();
-        $("[data-test-id=agreement]").shouldBe(visible);
+        $("[data-test-id=agreement].input_invalid .checkbox__text").shouldBe(visible);
 
     }
 }
